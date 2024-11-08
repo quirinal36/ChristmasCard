@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}홈{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for letter in letters %}
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        {% if letter.image_path %}
+        <img src="{{ url_for('static', filename=letter.image_path) }}" 
+             alt="편지 이미지" 
+             class="w-full h-48 object-cover">
+        {% endif %}
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold">From. {{ letter.sender_name }}</h2>
+                <span class="text-2xl">
+                    {% if letter.emotion == 'happy' %}😊
+                    {% elif letter.emotion == 'love' %}❤️
+                    {% elif letter.emotion == 'thankful' %}🙏
+                    {% else %}🎄
+                    {% endif %}
+                </span>
+            </div>
+            <p class="text-gray-600 whitespace-pre-line">{{ letter.message }}</p>
+            <div class="mt-4 text-sm text-gray-500">
+                {{ letter.created_at.strftime('%Y년 %m월 %d일') }}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-span-full text-center py-12">
+        <p class="text-gray-500 text-xl">아직 받은 편지가 없습니다. 첫 번째 편지를 작성해보세요! 🎅</p>
+        <a href="{{ url_for('main.write_letter') }}" class="mt-4 inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors">
+            편지쓰기
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

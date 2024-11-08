@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}편지쓰기{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h1 class="text-2xl font-bold mb-6 text-center">🎄 크리스마스 편지쓰기 ✉️</h1>
+        
+        <form action="{{ url_for('main.write_letter') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+            <div>
+                <label for="sender_name" class="block text-sm font-medium text-gray-700">이름</label>
+                <input type="text" name="sender_name" id="sender_name" required
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500">
+            </div>
+
+            <div>
+                <label for="message" class="block text-sm font-medium text-gray-700">메시지</label>
+                <textarea name="message" id="message" rows="6" required
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
+                    placeholder="따뜻한 마음을 담아 메시지를 작성해주세요..."></textarea>
+            </div>
+
+            <div>
+                <label for="emotion" class="block text-sm font-medium text-gray-700">감정 선택</label>
+                <select name="emotion" id="emotion"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500">
+                    <option value="happy">😊 행복</option>
+                    <option value="love">❤️ 사랑</option>
+                    <option value="thankful">🙏 감사</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="image" class="block text-sm font-medium text-gray-700">이미지 첨부 (선택사항)</label>
+                <input type="file" name="image" id="image" accept="image/*"
+                    class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100">
+            </div>
+
+            <div class="flex justify-end space-x-4">
+                <a href="{{ url_for('main.index') }}" 
+                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                    취소
+                </a>
+                <button type="submit" 
+                    class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">
+                    편지 보내기
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

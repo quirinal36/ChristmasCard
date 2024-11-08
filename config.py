@@ -7,7 +7,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') 
     
     # 데이터베이스 설정
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:////home/turboguy36/ChristmasCard/app.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
    
     # 파일 업로드 설정

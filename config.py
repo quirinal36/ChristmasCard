@@ -5,6 +5,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     # 기본 설정
     SECRET_KEY = os.environ.get('SECRET_KEY') 
+    print(SECRET_KEY)
     
     # 데이터베이스 설정
     SQLALCHEMY_DATABASE_URI = 'sqlite:////home/turboguy36/ChristmasCard/app.db'
